@@ -8,22 +8,42 @@
 
 /* Begin PBXBuildFile section */
 		A83F7D142CABFFF5000131B7 /* PrtScProApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F7D132CABFFF5000131B7 /* PrtScProApp.swift */; };
-		A83F7D162CABFFF5000131B7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F7D152CABFFF5000131B7 /* ContentView.swift */; };
+		A83F7D162CABFFF5000131B7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F7D152CABFFF5000131B7 /* MainView.swift */; };
 		A83F7D182CABFFF7000131B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A83F7D172CABFFF7000131B7 /* Assets.xcassets */; };
 		A83F7D1B2CABFFF7000131B7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A83F7D1A2CABFFF7000131B7 /* Preview Assets.xcassets */; };
 		A83F7D1D2CABFFF7000131B7 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F7D1C2CABFFF7000131B7 /* Persistence.swift */; };
 		A83F7D202CABFFF7000131B7 /* PrtScPro.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A83F7D1E2CABFFF7000131B7 /* PrtScPro.xcdatamodeld */; };
+		A83F7D2A2CAC0201000131B7 /* ScreenAreaPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F7D292CAC0201000131B7 /* ScreenAreaPanel.swift */; };
+		A83F7D2C2CAC0280000131B7 /* ScreenAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F7D2B2CAC0280000131B7 /* ScreenAreaView.swift */; };
+		A83F7D322CAD2718000131B7 /* ScreenAreaPanelModifier+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F7D312CAD2718000131B7 /* ScreenAreaPanelModifier+Extension.swift */; };
+		A85CCA042CADB659002EDE46 /* BarMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85CCA032CADB659002EDE46 /* BarMenuView.swift */; };
+		A85CCA062CADB99D002EDE46 /* ScreenshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85CCA052CADB99D002EDE46 /* ScreenshotView.swift */; };
+		A85CCA092CADD115002EDE46 /* ScreenRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85CCA082CADD115002EDE46 /* ScreenRecorder.swift */; };
+		A8F492B62CAD6F3800DDB2E5 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F492B52CAD6F3800DDB2E5 /* TimerView.swift */; };
+		A8F492B82CAD734A00DDB2E5 /* ControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F492B72CAD734A00DDB2E5 /* ControlButton.swift */; };
+		A8F492BB2CAD7FF200DDB2E5 /* ScreencastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F492BA2CAD7FF200DDB2E5 /* ScreencastView.swift */; };
+		A8F492BE2CADA6D600DDB2E5 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A8F492BD2CADA6D600DDB2E5 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A83F7D102CABFFF5000131B7 /* PrtScPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrtScPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A83F7D132CABFFF5000131B7 /* PrtScProApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrtScProApp.swift; sourceTree = "<group>"; };
-		A83F7D152CABFFF5000131B7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A83F7D152CABFFF5000131B7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A83F7D172CABFFF7000131B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A83F7D1A2CABFFF7000131B7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A83F7D1C2CABFFF7000131B7 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		A83F7D1F2CABFFF7000131B7 /* PrtScPro.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PrtScPro.xcdatamodel; sourceTree = "<group>"; };
 		A83F7D212CABFFF7000131B7 /* PrtScPro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PrtScPro.entitlements; sourceTree = "<group>"; };
+		A83F7D292CAC0201000131B7 /* ScreenAreaPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenAreaPanel.swift; sourceTree = "<group>"; };
+		A83F7D2B2CAC0280000131B7 /* ScreenAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenAreaView.swift; sourceTree = "<group>"; };
+		A83F7D312CAD2718000131B7 /* ScreenAreaPanelModifier+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScreenAreaPanelModifier+Extension.swift"; sourceTree = "<group>"; };
+		A85CCA032CADB659002EDE46 /* BarMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarMenuView.swift; sourceTree = "<group>"; };
+		A85CCA052CADB99D002EDE46 /* ScreenshotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotView.swift; sourceTree = "<group>"; };
+		A85CCA082CADD115002EDE46 /* ScreenRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenRecorder.swift; sourceTree = "<group>"; };
+		A8F492B52CAD6F3800DDB2E5 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		A8F492B72CAD734A00DDB2E5 /* ControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButton.swift; sourceTree = "<group>"; };
+		A8F492BA2CAD7FF200DDB2E5 /* ScreencastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreencastView.swift; sourceTree = "<group>"; };
+		A8F492BD2CADA6D600DDB2E5 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,13 +76,15 @@
 		A83F7D122CABFFF5000131B7 /* PrtScPro */ = {
 			isa = PBXGroup;
 			children = (
-				A83F7D132CABFFF5000131B7 /* PrtScProApp.swift */,
-				A83F7D152CABFFF5000131B7 /* ContentView.swift */,
-				A83F7D172CABFFF7000131B7 /* Assets.xcassets */,
-				A83F7D1C2CABFFF7000131B7 /* Persistence.swift */,
-				A83F7D212CABFFF7000131B7 /* PrtScPro.entitlements */,
-				A83F7D1E2CABFFF7000131B7 /* PrtScPro.xcdatamodeld */,
 				A83F7D192CABFFF7000131B7 /* Preview Content */,
+				A8F492B92CAD7FDF00DDB2E5 /* Views */,
+				A83F7D272CAC01D7000131B7 /* Modules */,
+				A83F7D132CABFFF5000131B7 /* PrtScProApp.swift */,
+				A83F7D1C2CABFFF7000131B7 /* Persistence.swift */,
+				A83F7D172CABFFF7000131B7 /* Assets.xcassets */,
+				A8F492BD2CADA6D600DDB2E5 /* Localizable.xcstrings */,
+				A83F7D1E2CABFFF7000131B7 /* PrtScPro.xcdatamodeld */,
+				A83F7D212CABFFF7000131B7 /* PrtScPro.entitlements */,
 			);
 			path = PrtScPro;
 			sourceTree = "<group>";
@@ -73,6 +95,54 @@
 				A83F7D1A2CABFFF7000131B7 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A83F7D272CAC01D7000131B7 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				A85CCA072CADD100002EDE46 /* ScreenRecorder */,
+				A8F492B42CAD6EAD00DDB2E5 /* AppControls */,
+				A83F7D282CAC01E2000131B7 /* ScreenAreaSelector */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		A83F7D282CAC01E2000131B7 /* ScreenAreaSelector */ = {
+			isa = PBXGroup;
+			children = (
+				A83F7D292CAC0201000131B7 /* ScreenAreaPanel.swift */,
+				A83F7D2B2CAC0280000131B7 /* ScreenAreaView.swift */,
+				A83F7D312CAD2718000131B7 /* ScreenAreaPanelModifier+Extension.swift */,
+			);
+			path = ScreenAreaSelector;
+			sourceTree = "<group>";
+		};
+		A85CCA072CADD100002EDE46 /* ScreenRecorder */ = {
+			isa = PBXGroup;
+			children = (
+				A85CCA082CADD115002EDE46 /* ScreenRecorder.swift */,
+			);
+			path = ScreenRecorder;
+			sourceTree = "<group>";
+		};
+		A8F492B42CAD6EAD00DDB2E5 /* AppControls */ = {
+			isa = PBXGroup;
+			children = (
+				A8F492B52CAD6F3800DDB2E5 /* TimerView.swift */,
+				A8F492B72CAD734A00DDB2E5 /* ControlButton.swift */,
+			);
+			path = AppControls;
+			sourceTree = "<group>";
+		};
+		A8F492B92CAD7FDF00DDB2E5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A83F7D152CABFFF5000131B7 /* MainView.swift */,
+				A8F492BA2CAD7FF200DDB2E5 /* ScreencastView.swift */,
+				A85CCA032CADB659002EDE46 /* BarMenuView.swift */,
+				A85CCA052CADB99D002EDE46 /* ScreenshotView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -117,6 +187,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = A83F7D072CABFFF4000131B7;
 			productRefGroup = A83F7D112CABFFF5000131B7 /* Products */;
@@ -135,6 +206,7 @@
 			files = (
 				A83F7D1B2CABFFF7000131B7 /* Preview Assets.xcassets in Resources */,
 				A83F7D182CABFFF7000131B7 /* Assets.xcassets in Resources */,
+				A8F492BE2CADA6D600DDB2E5 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,10 +217,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A85CCA062CADB99D002EDE46 /* ScreenshotView.swift in Sources */,
+				A85CCA092CADD115002EDE46 /* ScreenRecorder.swift in Sources */,
+				A8F492B82CAD734A00DDB2E5 /* ControlButton.swift in Sources */,
 				A83F7D1D2CABFFF7000131B7 /* Persistence.swift in Sources */,
-				A83F7D162CABFFF5000131B7 /* ContentView.swift in Sources */,
+				A83F7D322CAD2718000131B7 /* ScreenAreaPanelModifier+Extension.swift in Sources */,
+				A83F7D162CABFFF5000131B7 /* MainView.swift in Sources */,
 				A83F7D202CABFFF7000131B7 /* PrtScPro.xcdatamodeld in Sources */,
 				A83F7D142CABFFF5000131B7 /* PrtScProApp.swift in Sources */,
+				A83F7D2A2CAC0201000131B7 /* ScreenAreaPanel.swift in Sources */,
+				A85CCA042CADB659002EDE46 /* BarMenuView.swift in Sources */,
+				A8F492B62CAD6F3800DDB2E5 /* TimerView.swift in Sources */,
+				A8F492BB2CAD7FF200DDB2E5 /* ScreencastView.swift in Sources */,
+				A83F7D2C2CAC0280000131B7 /* ScreenAreaView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

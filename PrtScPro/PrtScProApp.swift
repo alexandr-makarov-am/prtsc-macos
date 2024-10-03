@@ -10,10 +10,15 @@ import SwiftUI
 @main
 struct PrtScProApp: App {
     let persistenceController = PersistenceController.shared
-
+    
     var body: some Scene {
+        MenuBarExtra {
+            BarMenuView()
+        } label: {
+            Image(systemName: "photo.fill").renderingMode(.template)
+        }
         WindowGroup {
-            ContentView()
+            MainView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
