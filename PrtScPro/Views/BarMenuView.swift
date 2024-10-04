@@ -8,35 +8,34 @@
 import SwiftUI
 
 struct BarMenuView: View {
-    
-    @State private var selectedArea: NSRect = NSRect()
-    @State private var shownCastSelector = false
-    @State private var shownShotSelector = false
+    @Environment(\.openWindow) private var openWindow
+    @StateObject var shotModel = ScreenAreaModel()
+    @StateObject var castModel = ScreenAreaModel()
     
     private var screen: NSScreen? = NSScreen.screens.first
     
     var body: some View {
         VStack {
             Button {
-                // openWindow(id: "MainView")
+                openWindow(id: "MainView")
             } label: {
                 Text(String(localized: "app.open"))
             }
 
             Button {
-                shownShotSelector.toggle()
+                shotModel.isShown.toggle()
             } label: {
                 Text(String(localized: "screenshot.take"))
-            }.areaSelector(isShown: $shownShotSelector, selectedArea: $selectedArea, contentRect: screen!.frame) {
-                ScreenshotView(selectedArea: $selectedArea, shownAreaSelector: $shownShotSelector)
+            }.areaSelector(isShown: $shotModel.isShown, selectedArea: $shotModel.selectedArea, contentRect: screen!.frame) {
+                ScreenshotView(selectedArea: $shotModel.selectedArea, shownAreaSelector: $shotModel.isShown)
             }
 
             Button {
-                shownCastSelector.toggle()
+                castModel.isShown.toggle()
             } label: {
                 Text(String(localized: "screencast.record"))
-            }.areaSelector(isShown: $shownCastSelector, selectedArea: $selectedArea, contentRect: screen!.frame) {
-                ScreencastView(selectedArea: $selectedArea, shownAreaSelector: $shownCastSelector)
+            }.areaSelector(isShown: $castModel.isShown, selectedArea: $castModel.selectedArea, contentRect: screen!.frame) {
+                ScreencastView(selectedArea: $castModel.selectedArea, shownAreaSelector: $castModel.isShown)
             }
 
             Button {

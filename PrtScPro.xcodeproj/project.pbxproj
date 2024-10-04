@@ -16,6 +16,7 @@
 		A83F7D2A2CAC0201000131B7 /* ScreenAreaPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F7D292CAC0201000131B7 /* ScreenAreaPanel.swift */; };
 		A83F7D2C2CAC0280000131B7 /* ScreenAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F7D2B2CAC0280000131B7 /* ScreenAreaView.swift */; };
 		A83F7D322CAD2718000131B7 /* ScreenAreaPanelModifier+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F7D312CAD2718000131B7 /* ScreenAreaPanelModifier+Extension.swift */; };
+		A841E7222CAEE867004A910F /* ScreenAreaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A841E7212CAEE867004A910F /* ScreenAreaModel.swift */; };
 		A85CCA042CADB659002EDE46 /* BarMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85CCA032CADB659002EDE46 /* BarMenuView.swift */; };
 		A85CCA062CADB99D002EDE46 /* ScreenshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85CCA052CADB99D002EDE46 /* ScreenshotView.swift */; };
 		A85CCA092CADD115002EDE46 /* ScreenRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85CCA082CADD115002EDE46 /* ScreenRecorder.swift */; };
@@ -37,6 +38,7 @@
 		A83F7D292CAC0201000131B7 /* ScreenAreaPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenAreaPanel.swift; sourceTree = "<group>"; };
 		A83F7D2B2CAC0280000131B7 /* ScreenAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenAreaView.swift; sourceTree = "<group>"; };
 		A83F7D312CAD2718000131B7 /* ScreenAreaPanelModifier+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScreenAreaPanelModifier+Extension.swift"; sourceTree = "<group>"; };
+		A841E7212CAEE867004A910F /* ScreenAreaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenAreaModel.swift; sourceTree = "<group>"; };
 		A85CCA032CADB659002EDE46 /* BarMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarMenuView.swift; sourceTree = "<group>"; };
 		A85CCA052CADB99D002EDE46 /* ScreenshotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotView.swift; sourceTree = "<group>"; };
 		A85CCA082CADD115002EDE46 /* ScreenRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenRecorder.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			children = (
 				A83F7D292CAC0201000131B7 /* ScreenAreaPanel.swift */,
 				A83F7D2B2CAC0280000131B7 /* ScreenAreaView.swift */,
+				A841E7212CAEE867004A910F /* ScreenAreaModel.swift */,
 				A83F7D312CAD2718000131B7 /* ScreenAreaPanelModifier+Extension.swift */,
 			);
 			path = ScreenAreaSelector;
@@ -229,6 +232,7 @@
 				A85CCA042CADB659002EDE46 /* BarMenuView.swift in Sources */,
 				A8F492B62CAD6F3800DDB2E5 /* TimerView.swift in Sources */,
 				A8F492BB2CAD7FF200DDB2E5 /* ScreencastView.swift in Sources */,
+				A841E7222CAEE867004A910F /* ScreenAreaModel.swift in Sources */,
 				A83F7D2C2CAC0280000131B7 /* ScreenAreaView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

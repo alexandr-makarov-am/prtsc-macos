@@ -17,7 +17,7 @@ struct PrtScProApp: App {
         } label: {
             Image(systemName: "photo.fill").renderingMode(.template)
         }
-        WindowGroup {
+        WindowGroup(id: "MainView") {
             MainView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
