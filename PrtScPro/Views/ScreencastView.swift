@@ -9,13 +9,9 @@ import SwiftUI
 
 struct ScreencastView: View {
     
-    @Binding var selectedArea: NSRect
-    @Binding var shownAreaSelector: Bool
-
+    @ObservedObject var model: ScreenAreaModel
     @State var isStarted: Bool = false
     @State var isFrozen: Bool = false
-    
-    @State var recorder: ScreenRecorder?
     
     var body: some View {
         let started = isStarted && !isFrozen,
@@ -30,28 +26,26 @@ struct ScreencastView: View {
                     .onTapGesture {
                         isFrozen = false
                         isStarted = true
-                        recorder = ScreenRecorder(rect: selectedArea)
-                        recorder?.record()
+                        // todo
                     }
                 ControlButton(isDisabled: paused, systemIconName: "pause.circle")
                     .disabled(paused)
                     .onTapGesture {
                         isFrozen = true
                         isStarted = true
+                        // todo
                     }
                 ControlButton(isDisabled: stopped, systemIconName: "stop.circle")
                     .disabled(stopped)
                     .onTapGesture {
                         isFrozen = false
                         isStarted = false
-                        Task {
-                            try await recorder?.stop();
-                        }
+                        // todo
                     }
                 ControlButton(isDisabled: !stopped, systemIconName: "xmark.circle")
                     .disabled(!stopped)
                     .onTapGesture {
-                        shownAreaSelector.toggle()
+                        model.isShown.toggle()
                     }
             }
         }
@@ -61,8 +55,7 @@ struct ScreencastView: View {
 }
 
 #Preview {
-    @State var shownAreaSelector: Bool = false
-    @State var selectedArea: NSRect = NSRect()
-    return ScreencastView(selectedArea: $selectedArea, shownAreaSelector: $shownAreaSelector)
+    @ObservedObject var model = ScreenAreaModel()
+    return ScreencastView(model: model)
 }
 

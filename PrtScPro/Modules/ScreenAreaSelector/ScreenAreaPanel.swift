@@ -8,14 +8,9 @@
 import SwiftUI
 
 class ScreenAreaPanel<Content: View>: NSPanel {
-    
-    @Binding var area: NSRect
-    
-    private var view: Content?
     private var controls: NSHostingView<Content>?
     
-    init(contentRect: NSRect, selectedArea: Binding<NSRect>) {
-        _area = selectedArea
+    init(contentRect: NSRect, selectedArea: Binding<NSRect>, @ViewBuilder view: () -> Content) {
         super.init(contentRect: contentRect, styleMask: [.borderless, .nonactivatingPanel, .closable, .fullSizeContentView], backing: .buffered, defer: false)
         self.isOpaque = false
         self.hasShadow = false
@@ -25,20 +20,20 @@ class ScreenAreaPanel<Content: View>: NSPanel {
         self.isReleasedWhenClosed = false
         self.isMovableByWindowBackground = false
         self.collectionBehavior = [.fullScreenAuxiliary, .canJoinAllSpaces]
-        self.contentView = ScreenAreaView(frame: contentRect, onChange: { rect in
-            let x0 = rect.minX, y0 = rect.minY, x1 = rect.maxX
-            if let rootView = self.view {
-                if (self.controls == nil) {
-                    self.controls = NSHostingView(rootView: rootView)
-                    self.contentView?.addSubview(self.controls!)
-                }
-                self.controls?.frame = NSRect(x: x1 , y: y0 - 70, width: x0 - x1, height: 50)
-            }
-            self.area = rect
-        })
+        self.contentView = ScreenAreaView(frame: contentRect, rect: selectedArea)
+        
+        let content: Content? = view()
+        if let rootView = content {
+            controls = NSHostingView(rootView: rootView)
+        }
     }
     
-    func add(@ViewBuilder view: () -> Content) {
-        self.view = view()
+    func showControlsView(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat) {
+        if let view = controls {
+            view.frame = NSRect(x: x, y: y, width: width, height: height)
+            if ((self.contentView?.subviews.isEmpty) != nil) {
+                self.contentView?.addSubview(view)
+            }
+        }
     }
 }

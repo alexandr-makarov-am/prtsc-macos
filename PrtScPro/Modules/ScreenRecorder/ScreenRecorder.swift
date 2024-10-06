@@ -6,27 +6,55 @@
 //
 
 import Foundation
+import ScreenCaptureKit
 import AVFoundation
 import AppKit
+import VideoToolbox
 
-class ScreenRecorder: NSObject, AVCaptureFileOutputRecordingDelegate, AVCapturePhotoCaptureDelegate {
+class ScreenRecorder: NSObject, SCStreamDelegate, SCStreamOutput {
     
-    let session = AVCaptureSession()
-    let movieOutput = AVCaptureMovieFileOutput()
-    let photoOutput = AVCapturePhotoOutput()
-    private var continuation: CheckedContinuation<Void, Error>?
+    private let videoSampleBufferQueue = DispatchQueue(label: "ScreenRecorder.VideoSampleBufferQueue")
+    private var stream: SCStream?
+    private var assetWriter: AVAssetWriter?
+    private var videoInput: AVAssetWriterInput?
+    private var oneFrame: Bool = false
     
-    init(rect: CGRect) {
+    init(rect: CGRect, fps: Int = 24, oneFrame: Bool = false) {
+        self.oneFrame = oneFrame
         super.init()
-        guard let videoInput = AVCaptureScreenInput(displayID: CGMainDisplayID()) else { return }
-        videoInput.cropRect = rect
-        
-        session.beginConfiguration()
-        session.addInput(videoInput)
-        session.addOutput(movieOutput)
-        session.addOutput(photoOutput)
-        session.commitConfiguration();
-        session.startRunning()
+        self.getDisplay { display in
+            if let d = display {
+                let filter = SCContentFilter(display: d, excludingWindows: [])
+                let conf = SCStreamConfiguration()
+                conf.queueDepth = 6
+                conf.sourceRect = rect
+                conf.width = Int(rect.width)
+                conf.height = Int(rect.height)
+                conf.pixelFormat = kCVPixelFormatType_32BGRA // 'BGRA'
+                conf.colorSpaceName = CGColorSpace.sRGB
+                conf.minimumFrameInterval = CMTime(value: 1, timescale: CMTimeScale(fps))
+                self.stream = SCStream(filter: filter, configuration: conf, delegate: self)
+                do {
+                    try self.stream?.addStreamOutput(self, type: .screen, sampleHandlerQueue: self.videoSampleBufferQueue)
+                } catch {
+                    print("error", error)
+                }
+            }
+        }
+        if !oneFrame {
+            DispatchQueue.global(qos: .userInitiated).async {
+                if let url = self.getStorageFolder("recording \(Date()).mov") {
+                    do {
+                        self.assetWriter = try AVAssetWriter(url: url, fileType: .mov)
+                        self.videoInput = AVAssetWriterInput(mediaType: .video, outputSettings: nil)
+                        self.videoInput?.expectsMediaDataInRealTime = true
+                        self.assetWriter?.add(self.videoInput!)
+                    } catch {
+                        print("error", error)
+                    }
+                }
+            }
+        }
     }
     
     private func getStorageFolder(_ filename: String) -> URL? {
@@ -37,41 +65,78 @@ class ScreenRecorder: NSObject, AVCaptureFileOutputRecordingDelegate, AVCaptureP
         return nil
     }
     
-    func record() {
-        if let url = getStorageFolder("recording \(Date()).mov") {
-            movieOutput.startRecording(to: url, recordingDelegate: self)
+    private func getDisplay(completion: @escaping (_ display: SCDisplay?) -> Void) {
+        SCShareableContent.getCurrentProcessShareableContent { content, error in
+            if error == nil {
+                let mainDisplay = content?.displays.filter({ display in
+                    return display.displayID == CGMainDisplayID()
+                })
+                completion(mainDisplay?.first)
+            }
         }
     }
     
-    func screenshot() {
-        let settings = AVCapturePhotoSettings()
-        photoOutput.capturePhoto(with: settings, delegate: self)
+    private func startSession() {
+        assetWriter?.startWriting()
+        assetWriter?.startSession(atSourceTime: CMClock.hostTimeClock.time)
     }
     
-    func stop() async throws {
-        try await withCheckedThrowingContinuation { cnt in
-            continuation = cnt
-            movieOutput.stopRecording()
+    private func stopSession() async {
+        assetWriter?.endSession(atSourceTime: CMClock.hostTimeClock.time)
+        videoInput?.markAsFinished()
+        await assetWriter?.finishWriting()
+    }
+    
+    public func record() {
+        self.startSession()
+        stream?.startCapture()
+    }
+    
+    public func stop() async {
+        do {
+            try await stream?.stopCapture()
+            await self.stopSession()
+        } catch {
+            print(error)
         }
-        continuation = nil
-        session.stopRunning()
     }
     
-    func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: (any Error)?) {
-        if let error {
-            continuation?.resume(throwing: error)
-        } else {
-            continuation?.resume()
-            NSWorkspace.shared.open(outputFileURL)
+    private func saveScreenShot(buffer: CVImageBuffer)  throws  {
+        guard let url = getStorageFolder("\(Date()).jpg") else { return }
+        let ciimage = CIImage(cvPixelBuffer: buffer)
+        let context = CIContext(options: nil)
+        if let cgImage = context.createCGImage(ciimage, from: ciimage.extent) {
+            let nsImage = NSImage(cgImage: cgImage, size: ciimage.extent.size)
+            guard let tiff = nsImage.tiffRepresentation else { return }
+            let bitmap = NSBitmapImageRep(data: tiff)
+            if let data = bitmap?.representation(using: .jpeg, properties: [:]) {
+                try data.write(to: url)
+            }
         }
     }
     
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: (any Error)?) {
-        let file = photo.fileDataRepresentation()
-        let path  = getStorageFolder("recording \(Date()).png")!
-        Task {
-            try file?.write(to: path)
-            NSWorkspace.shared.open(path)
+    func stream(_ stream: SCStream, didOutputSampleBuffer sampleBuffer: CMSampleBuffer, of type: SCStreamOutputType) {
+        guard sampleBuffer.isValid else { return }
+        switch type {
+        case .screen:
+            if oneFrame {
+                if let iss = CMSampleBufferGetImageBuffer(sampleBuffer) {
+                    do {
+                        print("save")
+                        try saveScreenShot(buffer: iss)
+                    } catch {
+                        print(error)
+                    }
+                }
+                Task.detached(priority: .userInitiated) {
+                    await self.stop()
+                }
+            } else {
+                videoInput?.append(sampleBuffer)
+            }
+            break
+        default:
+            break
         }
     }
 }

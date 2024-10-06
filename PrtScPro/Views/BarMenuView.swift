@@ -9,8 +9,8 @@ import SwiftUI
 
 struct BarMenuView: View {
     @Environment(\.openWindow) private var openWindow
-    @StateObject var shotModel = ScreenAreaModel()
-    @StateObject var castModel = ScreenAreaModel()
+    @ObservedObject var shotModel = ScreenAreaModel()
+    @ObservedObject var castModel = ScreenAreaModel()
     
     private var screen: NSScreen? = NSScreen.screens.first
     
@@ -27,7 +27,7 @@ struct BarMenuView: View {
             } label: {
                 Text(String(localized: "screenshot.take"))
             }.areaSelector(isShown: $shotModel.isShown, selectedArea: $shotModel.selectedArea, contentRect: screen!.frame) {
-                ScreenshotView(selectedArea: $shotModel.selectedArea, shownAreaSelector: $shotModel.isShown)
+                ScreenshotView(model: shotModel)
             }
 
             Button {
@@ -35,7 +35,7 @@ struct BarMenuView: View {
             } label: {
                 Text(String(localized: "screencast.record"))
             }.areaSelector(isShown: $castModel.isShown, selectedArea: $castModel.selectedArea, contentRect: screen!.frame) {
-                ScreencastView(selectedArea: $castModel.selectedArea, shownAreaSelector: $castModel.isShown)
+                ScreencastView(model: castModel)
             }
 
             Button {

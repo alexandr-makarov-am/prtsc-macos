@@ -8,23 +8,18 @@
 import SwiftUI
 
 struct ScreenshotView: View {
-    @Binding var selectedArea: NSRect
-    @Binding var shownAreaSelector: Bool
-    
-    @State var recorder: ScreenRecorder?
-    
+    @ObservedObject var model: ScreenAreaModel
+
     var body: some View {
         ZStack {
             HStack {
                 ControlButton(systemIconName: "checkmark.circle")
                     .onTapGesture {
-                        recorder = ScreenRecorder(rect: selectedArea)
-                        recorder?.screenshot()
-                        shownAreaSelector.toggle()
+                        model.isShown.toggle()
                     }
                 ControlButton(systemIconName: "xmark.circle")
                     .onTapGesture {
-                        shownAreaSelector.toggle()
+                        model.isShown.toggle()
                     }
             }
         }
@@ -34,7 +29,6 @@ struct ScreenshotView: View {
 }
 
 #Preview {
-    @State var shownAreaSelector: Bool = false
-    @State var selectedArea: NSRect = NSRect()
-    return ScreenshotView(selectedArea: $selectedArea, shownAreaSelector: $shownAreaSelector)
+    @ObservedObject var model = ScreenAreaModel()
+    return ScreenshotView(model: model)
 }

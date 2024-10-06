@@ -17,6 +17,7 @@
 		A83F7D2C2CAC0280000131B7 /* ScreenAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F7D2B2CAC0280000131B7 /* ScreenAreaView.swift */; };
 		A83F7D322CAD2718000131B7 /* ScreenAreaPanelModifier+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F7D312CAD2718000131B7 /* ScreenAreaPanelModifier+Extension.swift */; };
 		A841E7222CAEE867004A910F /* ScreenAreaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A841E7212CAEE867004A910F /* ScreenAreaModel.swift */; };
+		A841E7242CB18402004A910F /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A841E7232CB18402004A910F /* AppUtils.swift */; };
 		A85CCA042CADB659002EDE46 /* BarMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85CCA032CADB659002EDE46 /* BarMenuView.swift */; };
 		A85CCA062CADB99D002EDE46 /* ScreenshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85CCA052CADB99D002EDE46 /* ScreenshotView.swift */; };
 		A85CCA092CADD115002EDE46 /* ScreenRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85CCA082CADD115002EDE46 /* ScreenRecorder.swift */; };
@@ -39,6 +40,7 @@
 		A83F7D2B2CAC0280000131B7 /* ScreenAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenAreaView.swift; sourceTree = "<group>"; };
 		A83F7D312CAD2718000131B7 /* ScreenAreaPanelModifier+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScreenAreaPanelModifier+Extension.swift"; sourceTree = "<group>"; };
 		A841E7212CAEE867004A910F /* ScreenAreaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenAreaModel.swift; sourceTree = "<group>"; };
+		A841E7232CB18402004A910F /* AppUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
 		A85CCA032CADB659002EDE46 /* BarMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarMenuView.swift; sourceTree = "<group>"; };
 		A85CCA052CADB99D002EDE46 /* ScreenshotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotView.swift; sourceTree = "<group>"; };
 		A85CCA082CADD115002EDE46 /* ScreenRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenRecorder.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				A83F7D272CAC01D7000131B7 /* Modules */,
 				A83F7D132CABFFF5000131B7 /* PrtScProApp.swift */,
 				A83F7D1C2CABFFF7000131B7 /* Persistence.swift */,
+				A841E7232CB18402004A910F /* AppUtils.swift */,
 				A83F7D172CABFFF7000131B7 /* Assets.xcassets */,
 				A8F492BD2CADA6D600DDB2E5 /* Localizable.xcstrings */,
 				A83F7D1E2CABFFF7000131B7 /* PrtScPro.xcdatamodeld */,
@@ -220,6 +223,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A841E7242CB18402004A910F /* AppUtils.swift in Sources */,
 				A85CCA062CADB99D002EDE46 /* ScreenshotView.swift in Sources */,
 				A85CCA092CADD115002EDE46 /* ScreenRecorder.swift in Sources */,
 				A8F492B82CAD734A00DDB2E5 /* ControlButton.swift in Sources */,

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 fileprivate struct ScreenAreaPanelModifier<T: View>: ViewModifier {
     
     @Binding var isShown: Bool
@@ -31,13 +30,25 @@ fileprivate struct ScreenAreaPanelModifier<T: View>: ViewModifier {
             } else {
                 destroyPanel()
             }
+        }.onChange(of: selectedArea) { _, rect in
+            let x0 = rect.minX,
+                y0 = rect.minY,
+                x1 = rect.maxX,
+                offset: CGFloat = 80
+            if isShown {
+                panel?.showControlsView(
+                    x: AppUtils.getSafeValue(x0, min: contentRect.minX, max: contentRect.maxX - rect.width),
+                    y: AppUtils.getSafeValue(y0 - offset, min: contentRect.minY + offset, max: contentRect.maxY),
+                    width: AppUtils.getSafeValue(rect.width, min: 0, max: contentRect.width),
+                    height: AppUtils.getSafeValue(50, min: 0, max: contentRect.height)
+                )
+            }
         }
     }
     
     private func createPanel() {
-        panel = ScreenAreaPanel(contentRect: contentRect, selectedArea: $selectedArea)
+        panel = ScreenAreaPanel(contentRect: contentRect, selectedArea: $selectedArea, view: view)
         if let nsPanel = panel {
-            nsPanel.add(view: view)
             nsPanel.orderFrontRegardless()
             panel = nsPanel
         }
