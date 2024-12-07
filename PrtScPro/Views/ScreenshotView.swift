@@ -9,13 +9,15 @@ import SwiftUI
 
 struct ScreenshotView: View {
     @ObservedObject var model: ScreenAreaModel
-
+    var recorder = ScreenShotter()
+    
     var body: some View {
         ZStack {
             HStack {
                 ControlButton(systemIconName: "checkmark.circle")
                     .onTapGesture {
                         model.isShown.toggle()
+                        recorder.take(rect: model.selectedArea)
                     }
                 ControlButton(systemIconName: "xmark.circle")
                     .onTapGesture {

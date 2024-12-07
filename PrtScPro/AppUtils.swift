@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ScreenCaptureKit
 
 struct AppUtils {
     static func getSafeValue(_ value: CGFloat, min: CGFloat, max: CGFloat) -> CGFloat {
@@ -16,5 +17,11 @@ struct AppUtils {
         } else {
             return value
         }
+    }
+    
+    static func convertRectCoords(_ rect: CGRect, display: SCDisplay) -> CGRect {
+        let x = rect.minX
+        let y = abs(rect.minY - CGFloat(display.height) + rect.height)
+        return CGRect(x: x, y: y, width: abs(rect.width), height: abs(rect.height));
     }
 }

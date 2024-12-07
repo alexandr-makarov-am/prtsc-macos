@@ -43,6 +43,6 @@ struct BarMenuView: View {
             } label: {
                 Text(String(localized: "app.quit"))
             }
-        }
+        }.padding(15)
     }
 }

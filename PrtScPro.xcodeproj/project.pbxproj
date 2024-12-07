@@ -21,13 +21,17 @@
 		A85CCA042CADB659002EDE46 /* BarMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85CCA032CADB659002EDE46 /* BarMenuView.swift */; };
 		A85CCA062CADB99D002EDE46 /* ScreenshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85CCA052CADB99D002EDE46 /* ScreenshotView.swift */; };
 		A85CCA092CADD115002EDE46 /* ScreenRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85CCA082CADD115002EDE46 /* ScreenRecorder.swift */; };
+		A8A5BA7B2D00B5CB00D74A17 /* ScreenShotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A5BA7A2D00B5CB00D74A17 /* ScreenShotter.swift */; };
 		A8F492B62CAD6F3800DDB2E5 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F492B52CAD6F3800DDB2E5 /* TimerView.swift */; };
 		A8F492B82CAD734A00DDB2E5 /* ControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F492B72CAD734A00DDB2E5 /* ControlButton.swift */; };
 		A8F492BB2CAD7FF200DDB2E5 /* ScreencastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F492BA2CAD7FF200DDB2E5 /* ScreencastView.swift */; };
 		A8F492BE2CADA6D600DDB2E5 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A8F492BD2CADA6D600DDB2E5 /* Localizable.xcstrings */; };
+		B7B717C22515B1C981B67F42 /* Pods_PrtScPro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82B5F6B5259CE1011EC9F4AC /* Pods_PrtScPro.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		10A43BA1286C3A6406D392BD /* Pods-PrtScPro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrtScPro.debug.xcconfig"; path = "Target Support Files/Pods-PrtScPro/Pods-PrtScPro.debug.xcconfig"; sourceTree = "<group>"; };
+		82B5F6B5259CE1011EC9F4AC /* Pods_PrtScPro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PrtScPro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A83F7D102CABFFF5000131B7 /* PrtScPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrtScPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A83F7D132CABFFF5000131B7 /* PrtScProApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrtScProApp.swift; sourceTree = "<group>"; };
 		A83F7D152CABFFF5000131B7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -44,10 +48,12 @@
 		A85CCA032CADB659002EDE46 /* BarMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarMenuView.swift; sourceTree = "<group>"; };
 		A85CCA052CADB99D002EDE46 /* ScreenshotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotView.swift; sourceTree = "<group>"; };
 		A85CCA082CADD115002EDE46 /* ScreenRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenRecorder.swift; sourceTree = "<group>"; };
+		A8A5BA7A2D00B5CB00D74A17 /* ScreenShotter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotter.swift; sourceTree = "<group>"; };
 		A8F492B52CAD6F3800DDB2E5 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		A8F492B72CAD734A00DDB2E5 /* ControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButton.swift; sourceTree = "<group>"; };
 		A8F492BA2CAD7FF200DDB2E5 /* ScreencastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreencastView.swift; sourceTree = "<group>"; };
 		A8F492BD2CADA6D600DDB2E5 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		C0D678C3428373BA0DF34884 /* Pods-PrtScPro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrtScPro.release.xcconfig"; path = "Target Support Files/Pods-PrtScPro/Pods-PrtScPro.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,17 +61,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7B717C22515B1C981B67F42 /* Pods_PrtScPro.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C9F3957AC9B375C2780EC76 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				10A43BA1286C3A6406D392BD /* Pods-PrtScPro.debug.xcconfig */,
+				C0D678C3428373BA0DF34884 /* Pods-PrtScPro.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		A83F7D072CABFFF4000131B7 = {
 			isa = PBXGroup;
 			children = (
 				A83F7D122CABFFF5000131B7 /* PrtScPro */,
 				A83F7D112CABFFF5000131B7 /* Products */,
+				2C9F3957AC9B375C2780EC76 /* Pods */,
+				E537C4446F58092F262EEC16 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +123,7 @@
 		A83F7D272CAC01D7000131B7 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				A8A5BA792D00B57900D74A17 /* ScreenShotter */,
 				A85CCA072CADD100002EDE46 /* ScreenRecorder */,
 				A8F492B42CAD6EAD00DDB2E5 /* AppControls */,
 				A83F7D282CAC01E2000131B7 /* ScreenAreaSelector */,
@@ -131,6 +150,14 @@
 			path = ScreenRecorder;
 			sourceTree = "<group>";
 		};
+		A8A5BA792D00B57900D74A17 /* ScreenShotter */ = {
+			isa = PBXGroup;
+			children = (
+				A8A5BA7A2D00B5CB00D74A17 /* ScreenShotter.swift */,
+			);
+			path = ScreenShotter;
+			sourceTree = "<group>";
+		};
 		A8F492B42CAD6EAD00DDB2E5 /* AppControls */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +178,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		E537C4446F58092F262EEC16 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				82B5F6B5259CE1011EC9F4AC /* Pods_PrtScPro.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -158,9 +193,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A83F7D242CABFFF7000131B7 /* Build configuration list for PBXNativeTarget "PrtScPro" */;
 			buildPhases = (
+				C13D9AE3A3CB13E6B633BD99 /* [CP] Check Pods Manifest.lock */,
 				A83F7D0C2CABFFF5000131B7 /* Sources */,
 				A83F7D0D2CABFFF5000131B7 /* Frameworks */,
 				A83F7D0E2CABFFF5000131B7 /* Resources */,
+				0215873A1E4A8E98C4E6FBEE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -218,6 +255,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0215873A1E4A8E98C4E6FBEE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PrtScPro/Pods-PrtScPro-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PrtScPro/Pods-PrtScPro-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PrtScPro/Pods-PrtScPro-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C13D9AE3A3CB13E6B633BD99 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PrtScPro-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A83F7D0C2CABFFF5000131B7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -230,6 +309,7 @@
 				A83F7D1D2CABFFF7000131B7 /* Persistence.swift in Sources */,
 				A83F7D322CAD2718000131B7 /* ScreenAreaPanelModifier+Extension.swift in Sources */,
 				A83F7D162CABFFF5000131B7 /* MainView.swift in Sources */,
+				A8A5BA7B2D00B5CB00D74A17 /* ScreenShotter.swift in Sources */,
 				A83F7D202CABFFF7000131B7 /* PrtScPro.xcdatamodeld in Sources */,
 				A83F7D142CABFFF5000131B7 /* PrtScProApp.swift in Sources */,
 				A83F7D2A2CAC0201000131B7 /* ScreenAreaPanel.swift in Sources */,
@@ -364,6 +444,7 @@
 		};
 		A83F7D252CABFFF7000131B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 10A43BA1286C3A6406D392BD /* Pods-PrtScPro.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -375,6 +456,7 @@
 				DEVELOPMENT_TEAM = Z4MQF3PFSY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -391,6 +473,7 @@
 		};
 		A83F7D262CABFFF7000131B7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0D678C3428373BA0DF34884 /* Pods-PrtScPro.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -402,6 +485,7 @@
 				DEVELOPMENT_TEAM = Z4MQF3PFSY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (

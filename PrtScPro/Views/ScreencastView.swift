@@ -13,6 +13,8 @@ struct ScreencastView: View {
     @State var isStarted: Bool = false
     @State var isFrozen: Bool = false
     
+    var screenRecorder = ScreenRecorder()
+    
     var body: some View {
         let started = isStarted && !isFrozen,
             paused = isStarted && isFrozen,
@@ -26,7 +28,9 @@ struct ScreencastView: View {
                     .onTapGesture {
                         isFrozen = false
                         isStarted = true
-                        // todo
+                        DispatchQueue.global(qos: .userInitiated).async {
+                            screenRecorder.record(rect: model.selectedArea)
+                        }
                     }
                 ControlButton(isDisabled: paused, systemIconName: "pause.circle")
                     .disabled(paused)
@@ -40,7 +44,7 @@ struct ScreencastView: View {
                     .onTapGesture {
                         isFrozen = false
                         isStarted = false
-                        // todo
+                        screenRecorder.stop()
                     }
                 ControlButton(isDisabled: !stopped, systemIconName: "xmark.circle")
                     .disabled(!stopped)

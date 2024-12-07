@@ -155,9 +155,22 @@ class ScreenAreaView: NSView {
             if let previous = temp?.point, let prevRect = temp?.rect {
                 let x = prevRect.origin.x + (current.x - previous.x)
                 let y = prevRect.origin.y + (current.y - previous.y)
+                var minX = frame.minX, maxX = frame.maxX, minY = frame.minY, maxY = frame.maxY
+                let w = selectArea.rect.size.width
+                let h = selectArea.rect.size.height
+                if (w < 0) {
+                    minX = minX - w
+                } else {
+                    maxX = maxX - w
+                }
+                if (h < 0) {
+                    minY = minY - h
+                } else {
+                    maxY = maxY - h
+                }
                 selectArea.setRectPosition(
-                    x: AppUtils.getSafeValue(x, min: frame.minX, max: frame.maxX - selectArea.rect.width),
-                    y: AppUtils.getSafeValue(y, min: frame.minY + selectArea.rect.height, max: frame.maxY)
+                    x: AppUtils.getSafeValue(x, min: minX, max: maxX),
+                    y: AppUtils.getSafeValue(y, min: minY, max: maxY)
                 )
             }
         }

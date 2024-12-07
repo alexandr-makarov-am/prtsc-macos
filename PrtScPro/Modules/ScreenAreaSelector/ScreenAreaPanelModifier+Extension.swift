@@ -33,7 +33,6 @@ fileprivate struct ScreenAreaPanelModifier<T: View>: ViewModifier {
         }.onChange(of: selectedArea) { _, rect in
             let x0 = rect.minX,
                 y0 = rect.minY,
-                x1 = rect.maxX,
                 offset: CGFloat = 80
             if isShown {
                 panel?.showControlsView(
