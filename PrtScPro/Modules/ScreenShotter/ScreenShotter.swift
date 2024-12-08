@@ -45,8 +45,8 @@ class ScreenShotter: NSObject {
                 let filter = SCContentFilter(display: d, excludingWindows: [])
                 let conf = SCStreamConfiguration()
                 conf.sourceRect = _rect
-                conf.width = Int(_rect.width)
-                conf.height = Int(_rect.height)
+                conf.width = Int(_rect.width) * 2
+                conf.height = Int(_rect.height) * 2
                 conf.captureResolution = .best
                 conf.pixelFormat = kCVPixelFormatType_32BGRA // 'BGRA'
                 conf.colorSpaceName = CGColorSpace.sRGB
