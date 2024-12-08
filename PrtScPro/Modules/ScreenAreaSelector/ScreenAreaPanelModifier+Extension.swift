@@ -12,10 +12,8 @@ fileprivate struct ScreenAreaPanelModifier<T: View>: ViewModifier {
     @Binding var isShown: Bool
     @Binding var selectedArea: NSRect
     @ViewBuilder let view: () -> T
-    
     @State var panel: ScreenAreaPanel<T>?
-    
-    var contentRect: CGRect
+    let contentRect: CGRect
     
     func body(content: Content) -> some View {
         content.onAppear {
@@ -29,18 +27,6 @@ fileprivate struct ScreenAreaPanelModifier<T: View>: ViewModifier {
                 createPanel()
             } else {
                 destroyPanel()
-            }
-        }.onChange(of: selectedArea) { _, rect in
-            let x0 = rect.minX,
-                y0 = rect.minY,
-                offset: CGFloat = 80
-            if isShown {
-                panel?.showControlsView(
-                    x: AppUtils.getSafeValue(x0, min: contentRect.minX, max: contentRect.maxX - rect.width),
-                    y: AppUtils.getSafeValue(y0 - offset, min: contentRect.minY + offset, max: contentRect.maxY),
-                    width: AppUtils.getSafeValue(rect.width, min: 0, max: contentRect.width),
-                    height: AppUtils.getSafeValue(50, min: 0, max: contentRect.height)
-                )
             }
         }
     }

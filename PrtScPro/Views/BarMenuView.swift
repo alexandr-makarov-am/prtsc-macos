@@ -17,12 +17,6 @@ struct BarMenuView: View {
     var body: some View {
         VStack {
             Button {
-                openWindow(id: "MainView")
-            } label: {
-                Text(String(localized: "app.open"))
-            }
-
-            Button {
                 shotModel.isShown.toggle()
             } label: {
                 Text(String(localized: "screenshot.take"))

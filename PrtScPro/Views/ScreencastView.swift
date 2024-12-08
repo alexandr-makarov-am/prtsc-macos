@@ -44,7 +44,9 @@ struct ScreencastView: View {
                     .onTapGesture {
                         isFrozen = false
                         isStarted = false
-                        screenRecorder.stop()
+                        screenRecorder.stop {
+                            model.isShown.toggle()
+                        }
                     }
                 ControlButton(isDisabled: !stopped, systemIconName: "xmark.circle")
                     .disabled(!stopped)

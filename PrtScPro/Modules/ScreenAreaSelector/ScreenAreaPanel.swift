@@ -11,7 +11,7 @@ class ScreenAreaPanel<Content: View>: NSPanel {
     private var controls: NSHostingView<Content>?
     
     init(contentRect: NSRect, selectedArea: Binding<NSRect>, @ViewBuilder view: () -> Content) {
-        super.init(contentRect: contentRect, styleMask: [.borderless, .nonactivatingPanel, .closable, .fullSizeContentView], backing: .buffered, defer: false)
+        super.init(contentRect: contentRect, styleMask: [.borderless, .nonactivatingPanel, .fullSizeContentView], backing: .buffered, defer: false)
         self.isOpaque = false
         self.hasShadow = false
         self.level = .statusBar
@@ -19,9 +19,19 @@ class ScreenAreaPanel<Content: View>: NSPanel {
         self.backgroundColor = .clear
         self.isReleasedWhenClosed = false
         self.isMovableByWindowBackground = false
+        self.ignoresMouseEvents = true
         self.collectionBehavior = [.fullScreenAuxiliary, .canJoinAllSpaces]
-        self.contentView = ScreenAreaView(frame: contentRect, rect: selectedArea)
-        
+        self.contentView = ScreenAreaView(frame: contentRect, rect: selectedArea) { rect in
+            let x0 = rect.minX,
+                y0 = rect.minY,
+                offset: CGFloat = 80
+            self.showControlsView(
+                x: AppUtils.getSafeValue(x0, min: contentRect.minX, max: contentRect.maxX - rect.width),
+                y: AppUtils.getSafeValue(y0 - offset, min: contentRect.minY + offset, max: contentRect.maxY),
+                width: AppUtils.getSafeValue(rect.width, min: 0, max: contentRect.width),
+                height: AppUtils.getSafeValue(50, min: 0, max: contentRect.height)
+            )
+        }
         let content: Content? = view()
         if let rootView = content {
             controls = NSHostingView(rootView: rootView)

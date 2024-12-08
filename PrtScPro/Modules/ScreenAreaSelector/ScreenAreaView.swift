@@ -101,11 +101,13 @@ class ScreenAreaView: NSView {
     private var context: CGContext?
     private var temp: ScreenAreaSnapshot?
     private var selectArea: ScreenSelectArea
+    private var onChangeHandler: (_ rect: NSRect) -> Void?
     
     override var acceptsFirstResponder: Bool { true }
     
-    init(frame frameRect: NSRect, rect: Binding<NSRect>) {
+    init(frame frameRect: NSRect, rect: Binding<NSRect>, onChange: @escaping (_ rect: NSRect) -> Void) {
         selectArea = ScreenSelectArea(rect: rect)
+        onChangeHandler = onChange
         super.init(frame: frameRect)
     }
     
@@ -149,6 +151,7 @@ class ScreenAreaView: NSView {
         if (temp?.action == .draw) {
             if let previous = temp?.point {
                 selectArea.setRectPosition(x: previous.x, y: previous.y, w: current.x - previous.x, h: current.y - previous.y)
+                onChangeHandler(selectArea.rect)
             }
         }
         if (temp?.action == .move) {
@@ -172,6 +175,7 @@ class ScreenAreaView: NSView {
                     x: AppUtils.getSafeValue(x, min: minX, max: maxX),
                     y: AppUtils.getSafeValue(y, min: minY, max: maxY)
                 )
+                onChangeHandler(selectArea.rect)
             }
         }
         self.needsDisplay = true

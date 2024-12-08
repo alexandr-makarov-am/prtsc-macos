@@ -1,16 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "app.open" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open app"
-          }
-        }
-      }
-    },
     "app.quit" : {
       "extractionState" : "manual",
       "localizations" : {
