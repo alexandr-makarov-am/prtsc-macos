@@ -10,10 +10,13 @@ import SwiftUI
 fileprivate struct ScreenAreaPanelModifier<T: View>: ViewModifier {
     
     @Binding var isShown: Bool
+    @Binding var ignoreMouseEvents: Bool
     @Binding var selectedArea: NSRect
     @ViewBuilder let view: () -> T
-    @State var panel: ScreenAreaPanel<T>?
     let contentRect: CGRect
+    
+    @State var panel: ScreenAreaPanel<T>?
+    @State var timer: Timer?
     
     func body(content: Content) -> some View {
         content.onAppear {
@@ -37,6 +40,9 @@ fileprivate struct ScreenAreaPanelModifier<T: View>: ViewModifier {
             nsPanel.orderFrontRegardless()
             panel = nsPanel
         }
+        timer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true, block: { _ in
+            panel?.ignoresMouseEvents = ignoreMouseEvents
+        })
     }
     
     private func destroyPanel() {
@@ -44,6 +50,8 @@ fileprivate struct ScreenAreaPanelModifier<T: View>: ViewModifier {
             nsPanel.close()
             panel = nil
         }
+        timer?.invalidate()
+        timer = nil
     }
 }
 
@@ -52,8 +60,9 @@ extension View {
         isShown: Binding<Bool>,
         selectedArea: Binding<NSRect>,
         contentRect: CGRect = CGRect(x: 0, y: 0, width: 624, height: 512),
+        ignoreMouseEvents: Binding<Bool>,
         @ViewBuilder content: @escaping () -> T
     ) -> some View {
-        self.modifier(ScreenAreaPanelModifier(isShown: isShown, selectedArea: selectedArea, view: content, contentRect: contentRect))
+        self.modifier(ScreenAreaPanelModifier(isShown: isShown, ignoreMouseEvents: ignoreMouseEvents, selectedArea: selectedArea, view: content, contentRect: contentRect))
     }
 }

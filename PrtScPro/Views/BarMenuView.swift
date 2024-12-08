@@ -20,18 +20,17 @@ struct BarMenuView: View {
                 shotModel.isShown.toggle()
             } label: {
                 Text(String(localized: "screenshot.take"))
-            }.areaSelector(isShown: $shotModel.isShown, selectedArea: $shotModel.selectedArea, contentRect: screen!.frame) {
+            }.areaSelector(isShown: $shotModel.isShown, selectedArea: $shotModel.selectedArea, contentRect: screen!.frame, ignoreMouseEvents: $shotModel.ignoreMouseEvents) {
                 ScreenshotView(model: shotModel)
             }
-
             Button {
                 castModel.isShown.toggle()
             } label: {
                 Text(String(localized: "screencast.record"))
-            }.areaSelector(isShown: $castModel.isShown, selectedArea: $castModel.selectedArea, contentRect: screen!.frame) {
+            }.areaSelector(isShown: $castModel.isShown, selectedArea: $castModel.selectedArea, contentRect: screen!.frame,  ignoreMouseEvents: $castModel.ignoreMouseEvents) {
                 ScreencastView(model: castModel)
             }
-
+            Divider()
             Button {
                 exit(0);
             } label: {

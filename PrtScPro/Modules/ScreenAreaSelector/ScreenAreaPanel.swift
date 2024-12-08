@@ -8,9 +8,11 @@
 import SwiftUI
 
 class ScreenAreaPanel<Content: View>: NSPanel {
+    @Binding var selectedArea: NSRect
     private var controls: NSHostingView<Content>?
     
     init(contentRect: NSRect, selectedArea: Binding<NSRect>, @ViewBuilder view: () -> Content) {
+        self._selectedArea = selectedArea
         super.init(contentRect: contentRect, styleMask: [.borderless, .nonactivatingPanel, .fullSizeContentView], backing: .buffered, defer: false)
         self.isOpaque = false
         self.hasShadow = false
@@ -19,9 +21,8 @@ class ScreenAreaPanel<Content: View>: NSPanel {
         self.backgroundColor = .clear
         self.isReleasedWhenClosed = false
         self.isMovableByWindowBackground = false
-        self.ignoresMouseEvents = true
         self.collectionBehavior = [.fullScreenAuxiliary, .canJoinAllSpaces]
-        self.contentView = ScreenAreaView(frame: contentRect, rect: selectedArea) { rect in
+        self.contentView = ScreenAreaView(frame: contentRect) { rect in
             let x0 = rect.minX,
                 y0 = rect.minY,
                 offset: CGFloat = 80
@@ -31,6 +32,7 @@ class ScreenAreaPanel<Content: View>: NSPanel {
                 width: AppUtils.getSafeValue(rect.width, min: 0, max: contentRect.width),
                 height: AppUtils.getSafeValue(50, min: 0, max: contentRect.height)
             )
+            self.selectedArea = rect
         }
         let content: Content? = view()
         if let rootView = content {

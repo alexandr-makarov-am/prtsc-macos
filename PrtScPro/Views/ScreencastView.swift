@@ -17,7 +17,7 @@ struct ScreencastView: View {
     
     var body: some View {
         let started = isStarted && !isFrozen,
-            paused = isStarted && isFrozen,
+            // paused = isStarted && isFrozen,
             stopped = !isStarted && !isFrozen
         ZStack {
             HStack {
@@ -28,17 +28,16 @@ struct ScreencastView: View {
                     .onTapGesture {
                         isFrozen = false
                         isStarted = true
-                        DispatchQueue.global(qos: .userInitiated).async {
-                            screenRecorder.record(rect: model.selectedArea)
-                        }
+                        model.ignoreMouseEvents = true
+                        screenRecorder.record(rect: model.selectedArea)
                     }
-                ControlButton(isDisabled: paused, systemIconName: "pause.circle")
+                /*ControlButton(isDisabled: paused, systemIconName: "pause.circle")
                     .disabled(paused)
                     .onTapGesture {
                         isFrozen = true
                         isStarted = true
-                        // todo
-                    }
+                        model.ignoreMouseEvents = false
+                    }*/
                 ControlButton(isDisabled: stopped, systemIconName: "stop.circle")
                     .disabled(stopped)
                     .onTapGesture {
@@ -46,17 +45,24 @@ struct ScreencastView: View {
                         isStarted = false
                         screenRecorder.stop {
                             model.isShown.toggle()
+                            model.ignoreMouseEvents = false
                         }
                     }
                 ControlButton(isDisabled: !stopped, systemIconName: "xmark.circle")
                     .disabled(!stopped)
                     .onTapGesture {
                         model.isShown.toggle()
+                        model.ignoreMouseEvents = false
                     }
             }
         }
         .padding(10)
         .background(.gray, in: RoundedRectangle(cornerRadius: 15))
+        .onHover { value in
+            if isStarted {
+                model.ignoreMouseEvents = !value;
+            }
+        }
     }
 }
 
