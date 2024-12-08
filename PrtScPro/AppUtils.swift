@@ -24,4 +24,10 @@ struct AppUtils {
         let y = abs(rect.minY - CGFloat(display.height) + rect.height)
         return CGRect(x: x, y: y, width: abs(rect.width), height: abs(rect.height));
     }
+    
+    static func getUniqueFilename() -> String {
+        let format = DateFormatter()
+        format.dateFormat = "yyyyMMddHHmmss"
+        return format.string(from: Date.now);
+    }
 }

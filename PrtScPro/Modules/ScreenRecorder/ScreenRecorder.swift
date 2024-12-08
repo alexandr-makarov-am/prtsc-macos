@@ -23,6 +23,14 @@ final class ScreenRecorder: NSObject {
             .appendingPathComponent(UUID().uuidString)
             .appendingPathExtension(ext)
     }
+    
+    private func createOutputFile() -> URL? {
+        let urls = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask)
+        if let folder = urls.first {
+            return folder.appendingPathComponent("\(AppUtils.getUniqueFilename()).mp4")
+        }
+        return nil
+    }
 
     func record(rect: CGRect) {
         queue.sync {
@@ -68,16 +76,17 @@ extension ScreenRecorder: AVCaptureFileOutputRecordingDelegate {
     
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
         self.recording = false
-        let videoUrl = createTempFile("mp4")
-        FFmpegKit.executeAsync("-i " + outputFileURL.relativePath + " -c:v mpeg4 " + videoUrl.relativePath) { res in
-            if ReturnCode.isSuccess(res?.getReturnCode())  {
-                NSWorkspace.shared.open(videoUrl)
-                let fs = FileManager.default
-                do {
-                    try fs.removeItem(atPath: outputFileURL.relativePath)
-                    self.semaphore.signal()
-                } catch {
-                    print(error)
+        if let videoUrl = createOutputFile() {
+            FFmpegKit.executeAsync("-i \"\(outputFileURL.relativePath)\" -c:v mpeg4 \"\(videoUrl.relativePath)\"") { res in
+                if ReturnCode.isSuccess(res?.getReturnCode())  {
+                    NSWorkspace.shared.open(videoUrl)
+                    let fs = FileManager.default
+                    do {
+                        try fs.removeItem(atPath: outputFileURL.relativePath)
+                        self.semaphore.signal()
+                    } catch {
+                        print(error)
+                    }
                 }
             }
         }

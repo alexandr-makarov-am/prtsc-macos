@@ -27,7 +27,7 @@ class ScreenShotter: NSObject {
         return nil
     }
     private func saveScreenShot(buffer: CGImage) {
-        guard let url = getStorageFolder("\(Date()).jpg") else { return }
+        guard let url = getStorageFolder("\(AppUtils.getUniqueFilename()).jpg") else { return }
         let bitmap = NSBitmapImageRep(cgImage: buffer)
         if let data = bitmap.representation(using: .jpeg, properties: [:]) {
             do {
